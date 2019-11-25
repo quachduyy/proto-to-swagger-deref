@@ -7,11 +7,8 @@ const RefParser = require("json-schema-ref-parser");
 const [, , ...args] = process.argv;
 
 let keepReference = true;
-console.log(args);
 
 args.forEach((item) => {
-  console.log("11", item);
-
   if (typeof item === "string" && item.indexOf("--keep-ref=") !== -1) {
     const options = item.split("=");
     switch (options[1]) {
@@ -45,7 +42,7 @@ async function dereference(options) {
     process.exit(1);
   }
   console.log(options);
-  if (options.keepReference === true) {
+  if (options.keepReference === false) {
     delete derefData.definitions;
   }
   console.log(JSON.stringify(derefData));
